@@ -42,12 +42,23 @@ button {
   background-color: hsl(0, 0%, 80%);
 }
 
+.done-button {
+  background-color: hsl(0, 0%, 100%);
+}
+
+.done-button:hover {
+  background-color: hsl(0, 0%, 80%);
+}
+
 input {
   font-size: 1.6rem;
   padding: 10px;
   border: 2px solid hsla(0, 4%, 41%, 0.575);
   border-radius: 5px;
   color: hsla(0, 0%, 1%, 0.641);
+}
+.done {
+  background-color: hsl(120, 62%, 43%);
 }
 
 ol {

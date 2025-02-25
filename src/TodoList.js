@@ -8,6 +8,7 @@ export default function TodoList() {
     return savedTasks ? JSON.parse(savedTasks) : [];
   });
   const [newTask, setNewTask] = useState("");
+  const [doneTasks, setDoneTasks] = useState([]);
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -28,6 +29,16 @@ export default function TodoList() {
       updateTasks((t) => [...t, newTask]);
       setNewTask("");
     }
+  }
+
+  function doTask(index) {
+    setDoneTasks((prevDoneTasks) => {
+      if (prevDoneTasks.includes(index)) {
+        return prevDoneTasks.filter((i) => i !== index);
+      } else {
+        return [...prevDoneTasks, index];
+      }
+    });
   }
 
   function deleteTask(index) {
@@ -59,6 +70,8 @@ export default function TodoList() {
             index={index}
             task={task}
             deleteTask={deleteTask}
+            doTask={doTask}
+            doneTasks={doneTasks}
           />
         ))}
       </ol>
