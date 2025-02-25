@@ -1,73 +1,73 @@
-body{
-	background-color: hsl(0, 0%, 0%);
+body {
+  background-color: hsl(0, 0%, 0%);
 }
 
-.to-do-list{
-	text-align: center;
-	font-family: Arial, Helvetica, sans-serif;
-	margin-top: 100px;
+.to-do-list {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 100px;
 }
 
-h1{
-	color: white;
-	font-size: 4rem;
+h1 {
+  color: white;
+  font-size: 4rem;
 }
 
-button{
-	color: white;
-	font-size: 1.7rem;
-	font-weight: bold;
-	padding: 10px 20px;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: background-color 0.5s ease;
-	margin-left: 5px;
+button {
+  color: white;
+  font-size: 1.7rem;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  margin-left: 5px;
 }
 
-.add-button{
-	background-color: hsl(120, 79%, 27%);
-	text-shadow: -1px -1px 0 black;
+.add-button {
+  background-color: hsl(120, 79%, 27%);
+  text-shadow: -1px -1px 0 black;
 }
 
-.add-button:hover{
-	background-color: hsl(120, 79%, 17%);
+.add-button:hover {
+  background-color: hsl(120, 79%, 17%);
 }
 
-.delete-button{
-	background-color: hsl(0, 0%, 100%);
+.delete-button {
+  background-color: hsl(0, 0%, 100%);
 }
 
-.delete-button:hover{
-	background-color: hsl(0, 0%, 80%);
+.delete-button:hover {
+  background-color: hsl(0, 0%, 80%);
 }
 
-input{
-	font-size: 1.6rem;
-	padding: 10px;
-	border: 2px solid hsla(0, 4%, 41%, 0.575);
-	border-radius: 5px;
-	color: hsla(0, 0%, 1%, 0.641);
+input {
+  font-size: 1.6rem;
+  padding: 10px;
+  border: 2px solid hsla(0, 4%, 41%, 0.575);
+  border-radius: 5px;
+  color: hsla(0, 0%, 1%, 0.641);
 }
 
-ol{
-	padding: 0;
+ol {
+  padding: 0;
 }
 
-li{
-	font-size: 2rem;
-	font-weight: bold;
-	padding: 10px;
-	background-color: white;
-	border: 3px solid hsla(0, 1%, 48%, 0.606);
-	border-radius: 5px;
-	display: flex;
-	align-items: center;
-	max-width: 600px;
-	margin: auto;
-	margin-bottom: 10px;
+li {
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 10px;
+  background-color: white;
+  border: 3px solid hsla(0, 1%, 48%, 0.606);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  max-width: 600px;
+  margin: auto;
+  margin-bottom: 10px;
 }
 
-.text{
-	flex: 1;
+.text {
+  flex: 1;
 }
