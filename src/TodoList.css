@@ -50,6 +50,14 @@ button {
   background-color: hsl(0, 0%, 80%);
 }
 
+.move-button {
+  background-color: hsl(0, 0%, 100%);
+}
+
+.move-button:hover {
+  background-color: hsl(0, 0%, 80%);
+}
+
 input {
   font-size: 1.6rem;
   padding: 10px;

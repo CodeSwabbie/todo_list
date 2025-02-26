@@ -42,6 +42,26 @@ export default function TodoList() {
     updateTasks(updatedTasks);
   }
 
+  function moveTaskDown(index) {
+    if (index < tasks.length - 1) {
+      const updatedTasks = [...tasks];
+      const temp = updatedTasks[index + 1];
+      updatedTasks[index + 1] = updatedTasks[index];
+      updatedTasks[index] = temp;
+      updateTasks(updatedTasks);
+    }
+  }
+
+  function moveTaskUp(index) {
+    if (index > 0) {
+      const updatedTasks = [...tasks];
+      const temp = updatedTasks[index - 1];
+      updatedTasks[index - 1] = updatedTasks[index];
+      updatedTasks[index] = temp;
+      updateTasks(updatedTasks);
+    }
+  }
+
   return (
     <div className="to-do-list">
       <h1>To Do List</h1>
@@ -67,6 +87,8 @@ export default function TodoList() {
             task={task}
             deleteTask={deleteTask}
             doTask={doTask}
+            moveTaskDown={moveTaskDown}
+            moveTaskUp={moveTaskUp}
           />
         ))}
       </ol>
