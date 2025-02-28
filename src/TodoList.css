@@ -58,6 +58,14 @@ button {
   background-color: hsl(0, 0%, 80%);
 }
 
+.edit-button {
+  background-color: hsl(0, 0%, 100%);
+}
+
+.edit-button:hover {
+  background-color: hsl(0, 0%, 80%);
+}
+
 input {
   font-size: 1.6rem;
   padding: 10px;

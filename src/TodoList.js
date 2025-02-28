@@ -25,20 +25,28 @@ export default function TodoList() {
 
   function addTask() {
     if (newTask.trim() !== "") {
-      const newTaskObject = { text: newTask, isDone: false };
+      const maxId =
+        tasks.length > 0 ? Math.max(...tasks.map((task) => task.id)) : -1;
+      const newTaskObject = { id: maxId + 1, text: newTask, isDone: false };
       updateTasks((t) => [...t, newTaskObject]);
       setNewTask("");
     }
   }
 
-  function doTask(index) {
-    const updatedTasks = [...tasks];
-    updatedTasks[index].isDone = !updatedTasks[index].isDone;
-    updateTasks(updatedTasks);
+  function doTask(id) {
+    updateTasks((prevTasks) => {
+      const updatedTasks = prevTasks.map((task) => {
+        if (task.id === id) {
+          return { ...task, isDone: !task.isDone };
+        }
+        return task;
+      });
+      return updatedTasks;
+    });
   }
 
-  function deleteTask(index) {
-    const updatedTasks = tasks.filter((_, i) => i !== index);
+  function deleteTask(id) {
+    const updatedTasks = tasks.filter((task) => id !== task.id);
     updateTasks(updatedTasks);
   }
 
@@ -80,11 +88,11 @@ export default function TodoList() {
       </div>
 
       <ol>
-        {tasks.map((task, index) => (
+        {tasks.map((task) => (
           <TodoElement
-            key={index}
-            index={index}
+            key={task.id}
             task={task}
+            id={task.id}
             deleteTask={deleteTask}
             doTask={doTask}
             moveTaskDown={moveTaskDown}
