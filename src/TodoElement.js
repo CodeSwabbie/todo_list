@@ -1,15 +1,15 @@
 import MoveButtons from "./MoveButtons";
-// import TaskEditor from "./TaskEditor";
 
 export default function TodoElement({
   task,
   deleteTask,
   doTask,
-  moveTaskUp,
-  moveTaskDown,
+  updateTasks,
+  tasks,
+  index,
 }) {
   return (
-    <li key={task.id} className={task.isDone ? "done" : ""}>
+    <li className={task.isDone ? "done" : ""}>
       <span className="text">{task.text}</span>
       <button className="done-button" onClick={() => doTask(task.id)}>
         ✔️
@@ -17,11 +17,7 @@ export default function TodoElement({
       <button className="delete-button" onClick={() => deleteTask(task.id)}>
         ❌
       </button>
-      <MoveButtons
-        task={task}
-        moveTaskUp={moveTaskUp}
-        moveTaskDown={moveTaskDown}
-      />
+      <MoveButtons index={index} tasks={tasks} updateTasks={updateTasks} />
     </li>
   );
 }

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./TodoList.css";
 import TodoElement from "./TodoElement";
+import handleKeyPress from "./handleKeyPress";
+import handleInputChange from "./handleInputChange";
 
 export default function TodoList() {
   const [tasks, updateTasks] = useState(() => {
@@ -13,21 +15,17 @@ export default function TodoList() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
-  function handleInputChange(event) {
-    setNewTask(event.target.value);
-  }
-
-  function handleKeyPress(event) {
-    if (event.key === "Enter") {
-      addTask();
-    }
-  }
-
   function addTask() {
     if (newTask.trim() !== "") {
       const maxId =
         tasks.length > 0 ? Math.max(...tasks.map((task) => task.id)) : -1;
-      const newTaskObject = { id: maxId + 1, text: newTask, isDone: false };
+      const creationDate = new Date();
+      const newTaskObject = {
+        id: maxId + 1,
+        text: newTask,
+        isDone: false,
+        date: creationDate,
+      };
       updateTasks((t) => [...t, newTaskObject]);
       setNewTask("");
     }
@@ -50,26 +48,6 @@ export default function TodoList() {
     updateTasks(updatedTasks);
   }
 
-  function moveTaskDown(index) {
-    if (index < tasks.length - 1) {
-      const updatedTasks = [...tasks];
-      const temp = updatedTasks[index + 1];
-      updatedTasks[index + 1] = updatedTasks[index];
-      updatedTasks[index] = temp;
-      updateTasks(updatedTasks);
-    }
-  }
-
-  function moveTaskUp(index) {
-    if (index > 0) {
-      const updatedTasks = [...tasks];
-      const temp = updatedTasks[index - 1];
-      updatedTasks[index - 1] = updatedTasks[index];
-      updatedTasks[index] = temp;
-      updateTasks(updatedTasks);
-    }
-  }
-
   return (
     <div className="to-do-list">
       <h1>To Do List</h1>
@@ -78,9 +56,9 @@ export default function TodoList() {
         <input
           type="text"
           value={newTask}
-          onChange={handleInputChange}
+          onChange={(event) => handleInputChange(event, setNewTask)}
           placeholder="Enter task..."
-          onKeyDown={handleKeyPress}
+          onKeyDown={(event) => handleKeyPress(event, addTask)}
         />
         <button className="add-button" onClick={addTask}>
           Add
@@ -88,15 +66,16 @@ export default function TodoList() {
       </div>
 
       <ol>
-        {tasks.map((task) => (
+        {tasks.map((task, index) => (
           <TodoElement
             key={task.id}
+            tasks={tasks}
+            updateTasks={updateTasks}
             task={task}
             id={task.id}
+            index={index}
             deleteTask={deleteTask}
             doTask={doTask}
-            moveTaskDown={moveTaskDown}
-            moveTaskUp={moveTaskUp}
           />
         ))}
       </ol>
