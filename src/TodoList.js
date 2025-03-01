@@ -43,11 +43,6 @@ export default function TodoList() {
     });
   }
 
-  function deleteTask(id) {
-    const updatedTasks = tasks.filter((task) => id !== task.id);
-    updateTasks(updatedTasks);
-  }
-
   return (
     <div className="to-do-list">
       <h1>To Do List</h1>
@@ -74,7 +69,6 @@ export default function TodoList() {
             task={task}
             id={task.id}
             index={index}
-            deleteTask={deleteTask}
             doTask={doTask}
           />
         ))}

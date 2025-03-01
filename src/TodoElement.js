@@ -1,8 +1,8 @@
+import DeleteTask from "./DeleteTask";
 import MoveButtons from "./MoveButtons";
 
 export default function TodoElement({
   task,
-  deleteTask,
   doTask,
   updateTasks,
   tasks,
@@ -14,9 +14,7 @@ export default function TodoElement({
       <button className="done-button" onClick={() => doTask(task.id)}>
         ✔️
       </button>
-      <button className="delete-button" onClick={() => deleteTask(task.id)}>
-        ❌
-      </button>
+      <DeleteTask updateTasks={updateTasks} tasks={tasks} task={task} />
       <MoveButtons index={index} tasks={tasks} updateTasks={updateTasks} />
     </li>
   );
