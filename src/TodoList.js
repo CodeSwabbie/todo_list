@@ -31,18 +31,6 @@ export default function TodoList() {
     }
   }
 
-  function doTask(id) {
-    updateTasks((prevTasks) => {
-      const updatedTasks = prevTasks.map((task) => {
-        if (task.id === id) {
-          return { ...task, isDone: !task.isDone };
-        }
-        return task;
-      });
-      return updatedTasks;
-    });
-  }
-
   return (
     <div className="to-do-list">
       <h1>To Do List</h1>
@@ -69,7 +57,7 @@ export default function TodoList() {
             task={task}
             id={task.id}
             index={index}
-            doTask={doTask}
+            // doTask={doTask}
           />
         ))}
       </ol>
