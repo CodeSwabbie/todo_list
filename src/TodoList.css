@@ -81,6 +81,21 @@ ol {
   padding: 0;
 }
 
+.edit-input {
+  margin-left: 30px;
+}
+
+.edit-done {
+  background-color: hsl(120, 79%, 27%);
+  margin-left: 30px;
+  text-shadow: -1px -1px 0 black;
+  padding: 9px 15px;
+}
+
+.edit-done:hover {
+  background-color: hsl(120, 79%, 17%);
+}
+
 li {
   font-size: 2rem;
   font-weight: bold;

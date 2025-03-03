@@ -1,5 +1,5 @@
-export default function handleKeyPress(event, addTask) {
+export default function handleKeyPress(event, job) {
   if (event.key === "Enter") {
-    addTask();
+    job();
   }
 }

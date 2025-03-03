@@ -3,6 +3,7 @@ import "./TodoList.css";
 import TodoElement from "./TodoElement";
 import handleKeyPress from "./handleKeyPress";
 import handleInputChange from "./handleInputChange";
+import acceptEdit from "./acceptEdit";
 
 export default function TodoList() {
   const [tasks, updateTasks] = useState(() => {
@@ -24,6 +25,7 @@ export default function TodoList() {
         id: maxId + 1,
         text: newTask,
         isDone: false,
+        isEdit: false,
         date: creationDate,
       };
       updateTasks((t) => [...t, newTaskObject]);
@@ -38,6 +40,7 @@ export default function TodoList() {
       <div>
         <input
           type="text"
+          id="add-input"
           value={newTask}
           onChange={(event) => handleInputChange(event, setNewTask)}
           placeholder="Enter task..."
@@ -57,7 +60,8 @@ export default function TodoList() {
             task={task}
             id={task.id}
             index={index}
-            // doTask={doTask}
+            setNewTask={setNewTask}
+            acceptEdit={acceptEdit}
           />
         ))}
       </ol>
