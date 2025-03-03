@@ -2,38 +2,15 @@ import DoneTask from "./DoneTask";
 import DeleteTask from "./DeleteTask";
 import MoveButtons from "./MoveButtons";
 import EditTask from "./EditTask";
-import handleKeyPress from "./handleKeyPress";
+import IsEdit from "./IsEdit";
 
-export default function TodoElement({
-  task,
-  updateTasks,
-  tasks,
-  index,
-  acceptEdit,
-}) {
+export default function TodoElement({ task, updateTasks, tasks, index }) {
   return (
     <li className={task.isDone ? "done" : ""}>
       <EditTask tasks={tasks} task={task} updateTasks={updateTasks} />
       {task.isEdit ? (
         <>
-          <input
-            className="edit-input"
-            placeholder={task.text}
-            id={`input-edit-${task.id}`}
-            onKeyDown={(event) =>
-              handleKeyPress(event, () =>
-                updateTasks(acceptEdit(tasks, task.id, `input-edit-${task.id}`))
-              )
-            }
-          ></input>
-          <button
-            className="edit-done"
-            onClick={() =>
-              updateTasks(acceptEdit(tasks, task.id, `input-edit-${task.id}`))
-            }
-          >
-            Done
-          </button>
+          <IsEdit tasks={tasks} task={task} updateTasks={updateTasks} />
         </>
       ) : (
         <>
