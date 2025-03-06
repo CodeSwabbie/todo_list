@@ -3,7 +3,7 @@ import "./TodoList.css";
 import TodoElement from "./TodoElement";
 import handleKeyPress from "./handleKeyPress";
 import handleInputChange from "./handleInputChange";
-import acceptEdit from "./acceptEdit";
+import SortBy from "./SortBy";
 
 export default function TodoList() {
   const [tasks, updateTasks] = useState(() => {
@@ -49,6 +49,7 @@ export default function TodoList() {
         <button className="add-button" onClick={addTask}>
           Add
         </button>
+        <SortBy tasks={tasks} updateTasks={updateTasks} />
       </div>
 
       <ol>
@@ -61,7 +62,6 @@ export default function TodoList() {
             id={task.id}
             index={index}
             setNewTask={setNewTask}
-            acceptEdit={acceptEdit}
           />
         ))}
       </ol>

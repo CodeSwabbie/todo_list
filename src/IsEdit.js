@@ -4,7 +4,6 @@ import acceptEdit from "./acceptEdit";
 export default function IsEdit({ task, updateTasks, tasks }) {
   return (
     <div>
-      {" "}
       <input
         className="edit-input"
         placeholder={task.text}

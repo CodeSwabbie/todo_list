@@ -7,7 +7,9 @@ import IsEdit from "./IsEdit";
 export default function TodoElement({ task, updateTasks, tasks, index }) {
   return (
     <li className={task.isDone ? "done" : ""}>
-      <EditTask tasks={tasks} task={task} updateTasks={updateTasks} />
+      {!task.isDone && (
+        <EditTask tasks={tasks} task={task} updateTasks={updateTasks} />
+      )}
       {task.isEdit ? (
         <>
           <IsEdit tasks={tasks} task={task} updateTasks={updateTasks} />
