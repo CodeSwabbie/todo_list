@@ -4,6 +4,7 @@ import TodoElement from "./TodoElement";
 import handleKeyPress from "./handleKeyPress";
 import handleInputChange from "./handleInputChange";
 import SortBy from "./SortBy";
+import findMaxId from "./findMaxId";
 
 export default function TodoList() {
   const [tasks, updateTasks] = useState(() => {
@@ -18,8 +19,7 @@ export default function TodoList() {
 
   function addTask() {
     if (newTask.trim() !== "") {
-      const maxId =
-        tasks.length > 0 ? Math.max(...tasks.map((task) => task.id)) : -1;
+      const maxId = tasks.length > 0 ? findMaxId(tasks) : -1;
       const creationDate = new Date();
       const newTaskObject = {
         id: maxId + 1,

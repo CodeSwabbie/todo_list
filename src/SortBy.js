@@ -1,27 +1,38 @@
+import { useEffect, useRef } from "react";
+import _ from "lodash";
+
 export default function SortBy({ tasks, updateTasks }) {
-  function sortTodos(value) {
-    const sortedList = tasks.slice();
-    if (value === "undoneDone") {
-      updateTasks(
-        sortedList.sort((a, b) => Number(a.isDone) - Number(b.isDone))
+  const prevTasksRef = useRef();
+  useEffect(() => {
+    const prevTasks = prevTasksRef.current;
+    if (prevTasks && !_.isEqual(prevTasks, tasks)) {
+      const selectElement = document.querySelector(
+        'select[name="selectedSort"]'
       );
-    } else if (value === "doneUndone") {
-      updateTasks(
-        sortedList.sort((a, b) => Number(b.isDone) - Number(a.isDone))
-      );
-    } else if (value === "alphabeticalAsc") {
-      updateTasks(sortedList.sort((a, b) => a.text.localeCompare(b.text)));
-    } else if (value === "alphabeticalDesc") {
-      updateTasks(sortedList.sort((a, b) => b.text.localeCompare(a.text)));
-    } else if (value === "creationTimeAsc") {
-      updateTasks(
-        sortedList.sort((a, b) => new Date(a.date) - new Date(b.date))
-      );
-    } else if (value === "creationTimeDesc") {
-      updateTasks(
-        sortedList.sort((a, b) => new Date(b.date) - new Date(a.date))
-      );
+      if (selectElement) {
+        selectElement.value = "sortBy";
+      }
     }
+    prevTasksRef.current = tasks;
+  }, [tasks]);
+
+  function sortTodos(value) {
+    let unsortedList = tasks.slice();
+    if (value === "undoneDone") {
+      unsortedList = _.orderBy(unsortedList, ["isDone"], ["asc"]);
+    } else if (value === "doneUndone") {
+      unsortedList = _.orderBy(unsortedList, ["isDone"], ["desc"]);
+    } else if (value === "alphabeticalAsc") {
+      unsortedList = _.orderBy(unsortedList, ["text"], ["asc"]);
+    } else if (value === "alphabeticalDesc") {
+      unsortedList = _.orderBy(unsortedList, ["text"], ["desc"]);
+    } else if (value === "creationTimeAsc") {
+      unsortedList = _.orderBy(unsortedList, ["date"], ["asc"]);
+    } else if (value === "creationTimeDesc") {
+      unsortedList = _.orderBy(unsortedList, ["date"], ["desc"]);
+    }
+    prevTasksRef.current = unsortedList;
+    updateTasks(unsortedList);
   }
   return (
     <select
