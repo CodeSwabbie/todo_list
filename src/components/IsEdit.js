@@ -1,5 +1,5 @@
-import handleKeyPress from "./handleKeyPress";
-import acceptEdit from "./acceptEdit";
+import handleKeyPress from "./../functions/handleKeyPress";
+import acceptEdit from "./../functions/acceptEdit";
 
 export default function IsEdit({ task, updateTasks, tasks }) {
   return (

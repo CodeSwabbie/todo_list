@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "./TodoList.css";
+import "./scripts/TodoList.css";
 import TodoElement from "./TodoElement";
-import handleKeyPress from "./handleKeyPress";
-import handleInputChange from "./handleInputChange";
-import SortBy from "./SortBy";
-import findMaxId from "./findMaxId";
+import handleKeyPress from "./functions/handleKeyPress";
+import handleInputChange from "./functions/handleInputChange";
+import SortBy from "./components/SortBy";
+import findMaxId from "./functions/findMaxId";
 
 export default function TodoList() {
   const [tasks, updateTasks] = useState(() => {
