@@ -1,8 +1,8 @@
-import DoneTask from "./components/DoneTask";
-import DeleteTask from "./components/DeleteTask";
-import MoveButtons from "./components/MoveButtons";
-import EditTask from "./components/EditTask";
-import IsEdit from "./components/IsEdit";
+import DoneTask from "./DoneTask";
+import DeleteTask from "./DeleteTask";
+import MoveButtons from "./MoveButtons";
+import EditTask from "./EditTask";
+import IsEdit from "./IsEdit";
 
 export default function TodoElement({ task, updateTasks, tasks, index }) {
   return (
