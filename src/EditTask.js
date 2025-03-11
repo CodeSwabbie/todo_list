@@ -1,10 +1,10 @@
 export default function EditTask({ tasks, task, updateTasks }) {
-  function edit(id) {
-    const updatedTasks = tasks.map((task) => {
-      if (task.id === id) {
-        return { ...task, isEdit: !task.isEdit };
+  function edit() {
+    const updatedTasks = tasks.map((t) => {
+      if (t.id === task.id) {
+        return { ...t, isEdit: !t.isEdit };
       }
-      return task;
+      return t;
     });
     updateTasks(updatedTasks);
   }

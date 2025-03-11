@@ -1,6 +1,6 @@
 export default function DeleteTask({ updateTasks, task, tasks }) {
-  function deleteTask(id) {
-    const updatedTasks = tasks.filter((task) => id !== task.id);
+  function deleteTask() {
+    const updatedTasks = tasks.filter((t) => t.id !== task.id);
     updateTasks(updatedTasks);
   }
 

@@ -1,11 +1,11 @@
 export default function DoneTask({ updateTasks, task }) {
-  function doTask(id) {
+  function doTask() {
     updateTasks((prevTasks) => {
-      const updatedTasks = prevTasks.map((task) => {
-        if (task.id === id) {
-          return { ...task, isDone: !task.isDone };
+      const updatedTasks = prevTasks.map((t) => {
+        if (task.id === t.id) {
+          return { ...t, isDone: !t.isDone };
         }
-        return task;
+        return t;
       });
       return updatedTasks;
     });
