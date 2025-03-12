@@ -16,6 +16,37 @@ export default function SortBy({ tasks, updateTasks }) {
     prevTasksRef.current = tasks;
   }, [tasks]);
 
+  const options = [
+    {
+      label: "Sort by",
+      value: "sortBy",
+    },
+    {
+      label: "Task Name Z-A",
+      value: "alphabeticalDesc",
+    },
+    {
+      label: "Task Name A-Z",
+      value: "alphabeticalAsc",
+    },
+    {
+      label: "Undone - Done",
+      value: "undoneDone",
+    },
+    {
+      label: "Done - Undone",
+      value: "doneUndone",
+    },
+    {
+      label: "Creation Time ↓",
+      value: "creationTimeDesc",
+    },
+    {
+      label: "Creation Time ↑",
+      value: "creationTimeAsc",
+    },
+  ];
+
   function sortTodos(value) {
     let unsortedList = tasks.slice();
     if (value === "undoneDone") {
@@ -41,13 +72,11 @@ export default function SortBy({ tasks, updateTasks }) {
       name="selectedSort"
       onChange={(e) => sortTodos(e.target.value)}
     >
-      <option value="sortBy"> Sort by</option>
-      <option value="alphabeticalDesc"> Task Name Z-A</option>
-      <option value="alphabeticalAsc"> Task Name A-Z</option>
-      <option value="undoneDone"> Undone - Done</option>
-      <option value="doneUndone"> Done - Undone</option>
-      <option value="creationTimeDesc"> Creation Time ↓</option>
-      <option value="creationTimeAsc"> Creation Time ↑</option>
+      {options.map((option) => (
+        <option value={option.value} key={option.value}>
+          {option.label}
+        </option>
+      ))}
     </select>
   );
 }
