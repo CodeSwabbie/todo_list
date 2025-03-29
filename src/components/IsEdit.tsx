@@ -1,7 +1,10 @@
-import handleKeyPress from "./../functions/handleKeyPress";
-import acceptEdit from "./../functions/acceptEdit";
+import handleKeyPress from "../functions/handleKeyPress";
+import acceptEdit from "../functions/acceptEdit";
+import { TodoElementProps } from "../interfaces";
 
-export default function IsEdit({ task, updateTasks, tasks }) {
+type IsEditProps = Omit<TodoElementProps, "index">;
+
+export default function IsEdit({ task, updateTasks, tasks }: IsEditProps) {
   return (
     <div>
       <input

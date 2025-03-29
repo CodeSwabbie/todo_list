@@ -1,14 +1,17 @@
 import { useEffect, useRef } from "react";
-import _ from "lodash";
+import * as _ from "lodash";
+import { TodoElementProps, Task } from "../interfaces";
 
-export default function SortBy({ tasks, updateTasks }) {
-  const prevTasksRef = useRef();
+type SortByProps = Omit<TodoElementProps, "index" | "task">;
+
+export default function SortBy({ tasks, updateTasks }: SortByProps) {
+  const prevTasksRef = useRef<Task[] | null>(null);
   useEffect(() => {
     const prevTasks = prevTasksRef.current;
     if (prevTasks && !_.isEqual(prevTasks, tasks)) {
       const selectElement = document.querySelector(
         'select[name="selectedSort"]'
-      );
+      ) as HTMLSelectElement;
       if (selectElement) {
         selectElement.value = "sortBy";
       }
@@ -47,7 +50,7 @@ export default function SortBy({ tasks, updateTasks }) {
     },
   ];
 
-  function sortTodos(value) {
+  function sortTodos(value: string) {
     let unsortedList = tasks.slice();
     if (value === "undoneDone") {
       unsortedList = _.orderBy(unsortedList, ["isDone"], ["asc"]);

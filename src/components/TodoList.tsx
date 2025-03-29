@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from "react";
 import "./../styles/TodoList.css";
 import TodoElement from "./TodoElement";
-import handleKeyPress from "./../functions/handleKeyPress";
-import handleInputChange from "./../functions/handleInputChange";
+import handleKeyPress from "../functions/handleKeyPress";
+import handleInputChange from "../functions/handleInputChange";
 import SortBy from "./SortBy";
-import findMaxId from "./../functions/findMaxId";
+import findMaxId from "../functions/findMaxId";
+import { Task } from "../interfaces";
 
 export default function TodoList() {
-  const [tasks, updateTasks] = useState(() => {
+  const [tasks, updateTasks] = useState<Task[]>(() => {
     const savedTasks = localStorage.getItem("tasks");
-    return savedTasks ? JSON.parse(savedTasks) : [];
+    return savedTasks ? (JSON.parse(savedTasks) as Task[]) : [];
   });
-  const [newTask, setNewTask] = useState("");
+  const [newTask, setNewTask] = useState<string>("");
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
-  function addTask() {
+  function addTask(): void {
     if (newTask.trim() !== "") {
       const maxId = tasks.length > 0 ? findMaxId(tasks) : -1;
       const creationDate = new Date();
@@ -49,7 +50,11 @@ export default function TodoList() {
         <button className="add-button" onClick={addTask}>
           Add
         </button>
-        <SortBy tasks={tasks} updateTasks={updateTasks} />
+        <SortBy
+          tasks={tasks}
+          updateTasks={updateTasks}
+          setNewTask={setNewTask}
+        />
       </div>
 
       <ol>
@@ -59,7 +64,6 @@ export default function TodoList() {
             tasks={tasks}
             updateTasks={updateTasks}
             task={task}
-            id={task.id}
             index={index}
             setNewTask={setNewTask}
           />
