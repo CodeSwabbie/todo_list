@@ -1,6 +1,6 @@
 export default function handleInputChange(
-  event: React.ChangeEvent<HTMLInputElement>,
-  setNewTask: React.Dispatch<React.SetStateAction<string>>
+  event: Event,
+  setNewTask: (value: string) => void
 ): void {
-  setNewTask(event.target.value);
+  setNewTask((event.target as HTMLInputElement).value);
 }

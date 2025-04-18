@@ -1,5 +1,5 @@
 export default function handleKeyPress(
-  event: React.KeyboardEvent<HTMLInputElement>,
+  event: KeyboardEvent,
   job: () => void
 ): void {
   if (event.key === "Enter") {

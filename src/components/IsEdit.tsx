@@ -12,7 +12,7 @@ export default function IsEdit({ task, updateTasks, tasks }: IsEditProps) {
         placeholder={task.text}
         id={`input-edit-${task.id}`}
         onKeyDown={(event) =>
-          handleKeyPress(event, () =>
+          handleKeyPress(event as unknown as KeyboardEvent, () =>
             updateTasks(acceptEdit(tasks, task.id, `input-edit-${task.id}`))
           )
         }

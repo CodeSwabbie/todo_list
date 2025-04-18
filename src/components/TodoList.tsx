@@ -43,9 +43,13 @@ export default function TodoList() {
           type="text"
           id="add-input"
           value={newTask}
-          onChange={(event) => handleInputChange(event, setNewTask)}
+          onChange={(event) =>
+            handleInputChange(event as unknown as Event, setNewTask)
+          }
           placeholder="Enter task..."
-          onKeyDown={(event) => handleKeyPress(event, addTask)}
+          onKeyDown={(event) =>
+            handleKeyPress(event as unknown as KeyboardEvent, addTask)
+          }
         />
         <button className="add-button" onClick={addTask}>
           Add
