@@ -1,4 +1,8 @@
-export default function DoneTask({ updateTasks, task }) {
+import { TodoElementProps } from "../interfaces";
+
+type DoneTaskProps = Omit<TodoElementProps, "index" | "tasks">;
+
+export default function DoneTask({ updateTasks, task }: DoneTaskProps) {
   function doTask() {
     updateTasks((prevTasks) => {
       const updatedTasks = prevTasks.map((t) => {
@@ -11,7 +15,7 @@ export default function DoneTask({ updateTasks, task }) {
     });
   }
   return (
-    <button className="done-button" onClick={() => doTask(task.id)}>
+    <button className="done-button" onClick={doTask}>
       ✔️
     </button>
   );

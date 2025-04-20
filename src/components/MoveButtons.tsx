@@ -1,5 +1,13 @@
-export default function MoveButtons({ index, updateTasks, tasks }) {
-  function moveTaskUp(index) {
+import { TodoElementProps } from "../interfaces";
+
+type MoveButtonsProps = Omit<TodoElementProps, "task">;
+
+export default function MoveButtons({
+  index,
+  updateTasks,
+  tasks,
+}: MoveButtonsProps) {
+  function moveTaskUp(index: number): void {
     if (index > 0) {
       const updatedTasks = [...tasks];
       const temp = updatedTasks[index - 1];
@@ -9,7 +17,7 @@ export default function MoveButtons({ index, updateTasks, tasks }) {
     }
   }
 
-  function moveTaskDown(index) {
+  function moveTaskDown(index: number): void {
     if (index < tasks.length - 1) {
       const updatedTasks = [...tasks];
       const temp = updatedTasks[index + 1];

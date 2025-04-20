@@ -1,7 +1,10 @@
-import handleKeyPress from "./../functions/handleKeyPress";
-import acceptEdit from "./../functions/acceptEdit";
+import handleKeyPress from "../functions/handleKeyPress";
+import acceptEdit from "../functions/acceptEdit";
+import { TodoElementProps } from "../interfaces";
 
-export default function IsEdit({ task, updateTasks, tasks }) {
+type IsEditProps = Omit<TodoElementProps, "index">;
+
+export default function IsEdit({ task, updateTasks, tasks }: IsEditProps) {
   return (
     <div>
       <input
@@ -9,7 +12,7 @@ export default function IsEdit({ task, updateTasks, tasks }) {
         placeholder={task.text}
         id={`input-edit-${task.id}`}
         onKeyDown={(event) =>
-          handleKeyPress(event, () =>
+          handleKeyPress(event as unknown as KeyboardEvent, () =>
             updateTasks(acceptEdit(tasks, task.id, `input-edit-${task.id}`))
           )
         }
